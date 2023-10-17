@@ -1,0 +1,42 @@
+<div class="w-full min-h-screen flex">
+  <.live_component module={GarcWeb.NavBarComponent} id="nav_bar" section_id={@section_id} hide_nav={true} />
+
+
+  <div class="w-full lg:hidden shadow-lg items-center bg-sky-800 text-white fixed top-0 left-0 px-1 pt-1 pb-10">
+    <div class="w-full inline-flex px-2 py-2">
+      <div class="w-1/4 inline-flex items-center">
+        <a href="/roles" class="w-6 h-6 text-white mr-auto inline-flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 mx-auto" viewBox="0 0 448 512">
+            <path
+              d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+          </svg>
+        </a>
+      </div>
+      <div class="w-1/2 text-center">
+        <label class="text-xl font-medium">
+          <%= @page_title %>
+        </label>
+      </div>
+      <div class="w-1/4 inline-flex items-center">
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="w-full h-screen lg:h-auto bg-white lg:bg-slate-50 fixed lg:relative px-2 lg:px-8 top-0 left-0 mt-16 lg:mt-10 rounded-t-3xl">
+
+    <label class="hidden lg:block text-2xl mb-4 ml-1 font-semibold text-slate-600">
+      <%= @page_title %>
+    </label>
+    <.live_component module={GarcWeb.SteperComponent} id="stepper" stepers={@stepers} actual_steper={@actual_steper} />
+
+    <%= case @actual_steper do %>
+      <% 1 -> %> <%= Phoenix.View.render(GarcWeb.ProductView, "form_step_1.html" , assigns) %>
+          <% 2 -> %> <%= Phoenix.View.render(GarcWeb.ProductView, "form_step_2.html" , assigns) %>
+              <% 3 -> %> <%= Phoenix.View.render(GarcWeb.ProductView, "form_step_3.html" , assigns) %>
+                  <% end %>
+
+  </div>
+
+
+</div>

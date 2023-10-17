@@ -1,0 +1,124 @@
+<form phx-change="form_change_2" phx-submit="form_submit_2"
+  class="mt-4 lg:mt-0 text-sm bg-white lg:shadow rounded-lg lg:rounded-b p-3 lg:p-6 ">
+  <div class="w-full grid gap-6 md:grid-cols-2">
+    <div class="">
+      <label class="block text-xs font-bold text-slate-600">Unidad de medida</label>
+      <select name="unit_id" class="px-2 h-10 rounded bg-slate-100 w-full border border-slate-300">
+        <%= for item <- @units do %>
+          <option value={item.id} selected={"#{@form_2["unit_id"]}"=="#{item.id}" }>
+            <%= item.name %>
+          </option>
+          <% end %>
+      </select>
+    </div>
+    <div class="">
+      <label class="block text-xs font-bold text-slate-600">Cantidad</label>
+      <input name="quantity" value={@form_2["quantity"]}
+        class="px-2 h-10 rounded bg-slate-100 w-full border border-slate-300">
+    </div>
+  </div>
+
+  <div class="w-full grid gap-6 md:grid-cols-2 mt-4">
+    <div class="">
+      <label class="block text-xs font-bold text-slate-600">Unidad de medida de embalaje</label>
+      <select name="unit_packing_id" class="px-2 h-10 rounded bg-slate-100 w-full border border-slate-300">
+        <option value="">No aplica</option>
+        <%= for item <- @unit_packings do %>
+          <option value={item.id} selected={"#{@form_2["unit_packing_id"]}"=="#{item.id}" }>
+            <%= item.name %>
+          </option>
+          <% end %>
+      </select>
+    </div>
+    <div class="">
+      <label class="block text-xs font-bold text-slate-600">Cantidad en embalaje</label>
+      <input name="unit_packing_quantity" value={@form_2["unit_packing_quantity"]}
+        class="px-2 h-10 rounded bg-slate-100 w-full border border-slate-300">
+    </div>
+  </div>
+
+  <div class="w-full mt-4">
+    <label class="block text-xs font-bold text-slate-600">Clave unidad SAT</label>
+    <input name="sat_unit" value={@form_2["sat_unit"]}
+      class="px-2 h-10 rounded bg-slate-100 w-full border border-slate-300">
+
+  </div>
+
+  <div class="w-full mt-6 lg:mt-4">
+    <div class="inline-flex items-top w-full mt-1">
+      <ul class="grid w-full gap-6 md:grid-cols-2">
+        <li>
+          <input type="checkbox" id="react-option" name="is_negative_allow" value="true" class="hidden peer"
+            checked={"#{@form_2["is_negative_allow"]}"=="true" }>
+          <label for="react-option"
+            class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-slate-100 border-2 border-slate-100 rounded-lg cursor-pointer peer-checked:border-blue-800 hover:text-gray-600 peer-checked:text-blue-800 peer-checked:bg-white hover:bg-gray-50 ">
+            <div class="block">
+              <svg class="mb-2 w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 640 512">
+                <path
+                  d="M150.6 502.6l96-96c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 402.7V288H416V272c0-17.2 3.9-33.5 10.8-48H352V109.3l41.4 41.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-96-96c-6-6-14.1-9.4-22.6-9.4s-16.6 3.4-22.6 9.4l-96 96c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L288 109.3V224l-128 0H96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32H96V402.7L54.6 361.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0zM160 192V64c0-17.7-14.3-32-32-32s-32 14.3-32 32V192h64zM288 320V448c0 17.7 14.3 32 32 32s32-14.3 32-32V320H288zm240-80c17.7 0 32 14.3 32 32v48H496V272c0-17.7 14.3-32 32-32zm-80 32v48c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32V352c0-17.7-14.3-32-32-32V272c0-44.2-35.8-80-80-80s-80 35.8-80 80z" />
+              </svg>
+              <div class="w-full text-lg font-semibold">Existencia negativa</div>
+              <div class="w-full text-sm">Se permite que la existencia del producto pueda ser negativa</div>
+            </div>
+          </label>
+        </li>
+        <li>
+          <input type="checkbox" id="flowbite-option" name="is_price_updated" value="true" class="hidden peer"
+            checked={"#{@form_2["is_price_updated"]}"=="true" }>
+          <label for="flowbite-option"
+            class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-slate-100 border-2 border-slate-100 rounded-lg cursor-pointer peer-checked:border-blue-800 hover:text-gray-600 peer-checked:text-blue-800 peer-checked:bg-white hover:bg-gray-50 ">
+            <div class="block">
+              <svg class="mb-2 w-7 h-7" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                <path
+                  d="M535 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l64 64c4.5 4.5 7 10.6 7 17s-2.5 12.5-7 17l-64 64c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l23-23L384 112c-13.3 0-24-10.7-24-24s10.7-24 24-24l174.1 0L535 41zM105 377l-23 23L256 400c13.3 0 24 10.7 24 24s-10.7 24-24 24L81.9 448l23 23c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L7 441c-4.5-4.5-7-10.6-7-17s2.5-12.5 7-17l64-64c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM96 64H337.9c-3.7 7.2-5.9 15.3-5.9 24c0 28.7 23.3 52 52 52l117.4 0c-4 17 .6 35.5 13.8 48.8c20.3 20.3 53.2 20.3 73.5 0L608 169.5V384c0 35.3-28.7 64-64 64H302.1c3.7-7.2 5.9-15.3 5.9-24c0-28.7-23.3-52-52-52l-117.4 0c4-17-.6-35.5-13.8-48.8c-20.3-20.3-53.2-20.3-73.5 0L32 342.5V128c0-35.3 28.7-64 64-64zm64 64H96v64c35.3 0 64-28.7 64-64zM544 320c-35.3 0-64 28.7-64 64h64V320zM320 352a96 96 0 1 0 0-192 96 96 0 1 0 0 192z" />
+              </svg>
+              <div class="w-full text-lg font-semibold">Precio modificable</div>
+              <div class="w-full text-sm">Es posible alterar el precio.</div>
+            </div>
+          </label>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <hr class="w-full mt-6">
+
+  <label class="block text-base font-bold text-slate-600 mt-4">Dimensiones</label>
+
+  <div class="w-full grid gap-6 md:grid-cols-4 mt-4">
+
+    <div class="">
+      <label class="block text-xs font-bold text-slate-600">Ancho</label>
+      <input type="number" min="0" name="width" value={@form_2["width"]}
+        class="px-2 h-10 rounded bg-slate-100 w-full border border-slate-300">
+    </div>
+
+    <div class="">
+      <label class="block text-xs font-bold text-slate-600">Alto</label>
+      <input type="number" min="0" name="height" value={@form_2["height"]}
+        class="px-2 h-10 rounded bg-slate-100 w-full border border-slate-300">
+    </div>
+
+    <div class="">
+      <label class="block text-xs font-bold text-slate-600">Largo</label>
+      <input type="number" min="0" name="long" value={@form_2["long"]}
+        class="px-2 h-10 rounded bg-slate-100 w-full border border-slate-300">
+    </div>
+
+    <div class="">
+      <label class="block text-xs font-bold text-slate-600">Peso</label>
+      <input type="number" min="0" name="weight" value={@form_2["weight"]}
+        class="px-2 h-10 rounded bg-slate-100 w-full border border-slate-300">
+    </div>
+  </div>
+
+  <div class="w-full inline-flex items-center mt-10">
+    <button type="button" class="px-8 py-2 rounded bg-slate-700 text-white text-sm font-bold ml-auto mr-2">
+      Atras
+    </button>
+    <button class="px-8 py-2 rounded bg-sky-700 text-white text-sm font-bold mr-auto ml-2">
+      Guardar
+    </button>
+  </div>
+</form>
